@@ -24,9 +24,10 @@ has_many: purchases
 | description     | text      | null: false       |
 | category_id     | integer   | null: false       |
 | status_id       | integer   | null: false       |
-| item_fee_id     | integer   | null: false       |
+| shipping_fee_id | integer   | null: false       |
 | shipping_day_id | integer   | null: false       |
 | shipping_add_id | integer   | null: false       |
+| item-price      | integer   | null: fasle       |
 | user            | reference | foreign_key: true |
 
 
@@ -53,11 +54,11 @@ has_one: address
 | post_num        | string    | null: false       |
 | prifecture_id   | integer   | null: false       |
 | city    　　     | string    | null: false       |
-| street　　       | string    | null: false       |
-| building_num    | string    |                   |
 | street_num      | string    | null: false       |
+| building_num    | string    |                   |
 | tell_num        | string    | null: false       |
 | purchase        | reference | foreign_key: true |
 
 # Association
 belongs_to: purchase
+
