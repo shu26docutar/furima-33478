@@ -37,10 +37,10 @@ has_one: purchase
 
 
 ###　購入記録(purchase)
-| Column |   Type    |           Options           |
-| ------ | --------- | --------------------------- |
-| user   | reference | null:false,foreign_key: tue |
-| item   | reference | null:false,foreign_key: tue |
+| Column |   Type    |            Options           |
+| ------ | --------- | ---------------------------- |
+| user   | reference | null:false,foreign_key: true |
+| item   | reference | null:false,foreign_key: true |
 
 # Association
 belongs_to: user
