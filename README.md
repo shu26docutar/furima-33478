@@ -10,6 +10,7 @@
 | first_name_kana      | string  | null: false                          |
 | last_name_kana       | string  | null: false                          |
 | nickname             | string  | null: false                          |
+| birthday             | date    | null: false                          |
 
 # Association
 has_many: items
@@ -52,7 +53,6 @@ has_one: address
 | prifecture_id   | integer   | null: false       |
 | city    　　     | string    | null: false       |
 | street　　       | string    | null: false       |
-| street_num　　   | string    | null: false       |
 | building_num    | string    |                   |
 | street_num      | string    | null: false       |
 | tell_num        | string    | null: false       |
