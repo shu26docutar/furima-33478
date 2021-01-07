@@ -18,16 +18,17 @@ has_many: purchases
 
 
 ###　商品情報(item)
-|     Column      |    Type   |   Options   |
-| --------------- | --------- | ----------- |
-| title           | string    | null: false |
-| description     | text      | null: false |
-| category_id     | integer   | null: false |
-| status_id       | integer   | null: false |
-| item_fee_id     | integer   | null: false |
-| shipping_day_id | integer   | null: false |
-| shipping_fee_id | integer   | null: false |
-| shipping_add_id | integer   | null: false |
+|     Column      |    Type   |      Options      |
+| --------------- | --------- | ----------------- |
+| title           | string    | null: false       |
+| description     | text      | null: false       |
+| category_id     | integer   | null: false       |
+| status_id       | integer   | null: false       |
+| item_fee_id     | integer   | null: false       |
+| shipping_day_id | integer   | null: false       |
+| shipping_add_id | integer   | null: false       |
+| user            | reference | foreign_key: true |
+
 
 # Association
 belongs_to: user
