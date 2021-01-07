@@ -26,8 +26,8 @@ has_many: purchases
 | status_id       | integer   | null: false       |
 | shipping_fee_id | integer   | null: false       |
 | shipping_day_id | integer   | null: false       |
-| shipping_add_id | integer   | null: false       |
-| item-price      | integer   | null: fasle       |
+| prifecture_id   | integer   | null: false       |
+| item_price      | integer   | null: fasle       |
 | user            | reference | foreign_key: true |
 
 
