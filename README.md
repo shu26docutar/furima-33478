@@ -19,6 +19,7 @@ has_many: purchases
 ###　商品情報(item)
 |     Column      |    Type   |   Options   |
 | --------------- | --------- | ----------- |
+| image           |           |             |
 | title           | string    | null: false |
 | description     | text      | null: false |
 | category_id     | integer   | null: false |
@@ -45,16 +46,17 @@ has_one: purchase
 
 
 ###　住所(address)
-|     Column      |   Type    |   Options   |
-| --------------- | --------- | ----------- |
-| post_num_id     | integer   | null: false |
-| prifecture_id   | integer   | null: false |
-| city_id         | integer   | null: false |
-| street_id       | integer   | null: false |
-| street_num_id   | integer   | null: false |
-| building_num_id | integer   | null: false |
-| street_num      | integer   | null: false |
-| tell_num        | integer   | null: false |
+|     Column      |   Type    |      Options      |
+| --------------- | --------- | ----------------- |
+| post_num        | string    | null: false       |
+| prifecture_id   | integer   | null: false       |
+| city    　　     | string    | null: false       |
+| street　　       | string    | null: false       |
+| street_num　　   | string    | null: false       |
+| building_num    | string    | null: false       |
+| street_num      | string    | null: false       |
+| tell_num        | string    | null: false       |
+| purchase        | reference | foreign_key: true |
 
 # Association
 belongs_to: purchase
