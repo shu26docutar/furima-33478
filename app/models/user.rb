@@ -21,6 +21,3 @@ class User < ApplicationRecord
         validates :password, presence: true, length: { minimum:6 }, format: { with: /[a-z\d]{6,}/i }
         validates :birthday, presence: true
 end
-# , message: '半角英数字を使用してください' , format: { with: /\A[a-z0-9]+\z/}
-# user モデルのバリデーションにて、正規表現を外すとエラーが治るが、つけるとエラーを引き起こしてしまう。
-# 原因はモデルのバリデーションにあると考えられる。

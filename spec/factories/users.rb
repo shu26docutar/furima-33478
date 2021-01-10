@@ -9,8 +9,5 @@ FactoryBot.define do
     first_name_kana        {"ハットリ"}
     last_name_kana        {"シュウヘイ"}
     birthday              {"2021/01/08"}
-    # id {1}
-    # created_at {"2021/01/08"}
-    # updated_at {"2021/01/08"}
   end
 end
