@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  before_action :move_to_nouser, only: [:new]
+
   def index
     
   end
@@ -8,6 +10,7 @@ class ItemsController < ApplicationController
   def new
     @prefectures = Item.order("ceated_at DESC")
     @item = Item.new
+    
   end
 
   def create
@@ -23,4 +26,11 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :description, :image, :status_id, :category_id, :shipping_day_id, :shipping_fee_id, :prefecuture_id, :item_price)
   end
+
+  def move_to_nouser
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+  
 end
