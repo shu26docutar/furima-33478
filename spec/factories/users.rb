@@ -10,4 +10,7 @@ FactoryBot.define do
     last_name_kana        {"シュウヘイ"}
     birthday              {"2021/01/08"}
   end
+
 end
+
+
