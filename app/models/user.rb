@@ -18,6 +18,14 @@ class User < ApplicationRecord
         end
 
         validates :nickname, presence: true
-        validates :password, presence: true, length: { minimum:6 }, format: { with: /[a-z\d]{6,}/i }
+        validates :password, presence: true, length: { minimum:6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/ , message: 'は半角英数字で入力してください'}
         validates :birthday, presence: true
 end
+# /\A[a-z0-9]{1}/
+# /\A(?=.*?[a-z])(?=.*?[0-9])[a-z0-9]+\z/
+# https://gyazo.com/bea9aa41966eaf97c166622484a9a22b 新規失敗
+# https://gyazo.com/6c946b97c2a2bf2ecce4e1b8fb07377e　新規成功
+# https://gyazo.com/fc2a51851fd68cdb2e9eda0528c9d2fd　ログアウト
+# https://gyazo.com/626c17a0ab78bdda927487f1a72159b6　ログイン失敗
+# https://gyazo.com/11d58ce9e4ccfe27944a0d154747aafa ログイン成功
+# https://gyazo.com/b4fdf469201eeae70260616af256e783 テスト写真

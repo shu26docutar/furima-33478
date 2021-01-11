@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
     end
     describe "ユーザー新規登録" do
       context "新規登録がうまくいく場合" do
-        it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
+        it "nicknameとemail、passwordとpassword_confirmationとbirthdayが存在すれば登録できる" do
           expect(@user).to be_valid  
         end
 
         it "passwordが6文字以上であれば登録できること" do
-          @user.password = "000000"
-          @user.password_confirmation = "000000"
+          @user.password = "a00000"
+          @user.password_confirmation = "a00000"
           expect(@user).to be_valid  
         end
       end
@@ -52,17 +52,38 @@ RSpec.describe User, type: :model do
       end
 
       it "passwordが5文字以下であれば登録できないこと" do
-        @user.password = "00000"
-        @user.password_confirmation = "00000"
+        @user.password = "a0000"
+        @user.password_confirmation = "a0000"
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
       end
 
       it "passwordとpassword_confirmationが不一致では登録できないこと" do
-        @user.password = ""
-        @user.password_confirmation = "111111"
+        @user.password = "a00000"
+        @user.password_confirmation = "a11111"
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end
+
+      it "passwordが全角であれば登録できないこと" do
+        @user.password = "ａ０００００"
+        @user.password_confirmation = "ａ００００００"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password は半角英数字で入力してください"
+      end
+
+      it "passwordが数字のみでは登録できないこと" do
+        @user.password = "000000"
+        @user.password_confirmation = "000000"
+        @user.valid?
+        expect(@user.errors.full_messages).to include 
+      end
+
+      it "passwordが英語のみでは登録できないこと" do
+        @user.password = "aaaaaa"
+        @user.password_confirmation = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include
       end
 
       it "first_nameが空では登録できない" do
