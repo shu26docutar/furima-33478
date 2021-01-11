@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :basic_auth
 
 #     before_action :basic_auth 一時的機能の停止
     before_action :configure_permitted_parameters, if: :devise_controller?

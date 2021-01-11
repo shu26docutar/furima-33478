@@ -34,6 +34,7 @@ has_many: purchases
 # Association
 belongs_to: user
 has_one: purchase
+has_one_attached: image
 
 
 ###　購入記録(purchase)
