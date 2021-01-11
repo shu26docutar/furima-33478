@@ -36,6 +36,9 @@ belongs_to: user
 has_one: purchase
 has_one_attached: image
 
+# ActiceHash::Association
+belongs_to :prefecture, :category, :status, :shipping_fee, :shipping_day
+
 
 ###　購入記録(purchase)
 | Column |   Type    |            Options           |
