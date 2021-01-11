@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
       end
 
     context "新規登録がうまくいかない場合" do
-      
+
       it "nicknameが空だと登録できない" do
         @user.nickname = nil
         @user.valid?
@@ -141,4 +141,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-end
+
