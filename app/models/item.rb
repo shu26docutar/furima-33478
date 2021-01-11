@@ -4,15 +4,20 @@ class Item < ApplicationRecord
     # has_one :purchase
 
     extend ActiveHash::Associations::ActiveRecordExtensions
-    belongs_to :prefecture, :category, :status, :shipping_fee, :shipping_day
+    belongs_to  :category, :status, :shipping_fee, :prefecture, :shipping_day
 
-    validates :title, :description, :image, presence: true
-    
-    with_options numericality: { other_than: 1 } do
-        validates :prefecture_id
+    with_options presence: true do
+        validates :title
+        validates :description
+        validates :image
+        validates :item_price
+    end
+
+    with_options  presence: true ,numericality: { other_than: 1 } do
         validates :category_id
         validates :status_id
-        validates :shipping_day_id
         validates :shipping_fee_id
+        validates :prefecture_id
+        validates :shipping_day_id
     end
 end
