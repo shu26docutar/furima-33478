@@ -10,8 +10,10 @@ class Item < ApplicationRecord
         validates :title
         validates :description
         validates :image
-        validates :item_price
+        
     end
+
+    validates :item_price, presence: true,inclusion: { in: 300..9_999_999 }, format: { with: /\A[\d]+\z/, message: '半角数字で入力してください' }
 
     with_options  presence: true ,numericality: { other_than: 1 } do
         validates :category_id
