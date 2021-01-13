@@ -9,6 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
+
 ActiveRecord::Schema.define(version: 2021_01_10_025314) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -39,16 +40,13 @@ ActiveRecord::Schema.define(version: 2021_01_10_025314) do
     t.integer "status_id", null: false
     t.integer "shipping_fee_id", null: false
     t.integer "shipping_day_id", null: false
-    t.integer "prifecture_id", null: false
-    t.integer "iitem_price", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "item_price", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end
-
-ActiveRecord::Schema.define(version: 2021_01_08_024553) do
-
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
@@ -67,7 +65,6 @@ ActiveRecord::Schema.define(version: 2021_01_08_024553) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
