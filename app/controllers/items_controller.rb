@@ -26,6 +26,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_nouser
-    redirect_to new_user_session_path unless user_signed_in?
+    authenticate_user!
   end
 end
