@@ -3,16 +3,22 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_many :purchase
+  has_many :orders
 
-    validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' }
-    validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' }
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
+    validates :first_name
+    validates :last_name
+  end
 
-    validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶ一-]+\z/, message: '全角カナを使用してください' }
-    validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶ一-]+\z/, message: '全角カナを使用してください' }
+  with_options presence: true, format: { with: /\A[ァ-ヶ一-]+\z/, message: '全角カナを使用してください' } do
+    validates :first_name_kana
+    validates :last_name_kana
+  end
 
-    validates :nickname, presence: true 
-    validates :birthday, presence: true 
+  with_options presence: true do
+    validates :nickname
+    validates :birthday
+  end
 
   validates :password, presence: true, length: { minimum: 6 },
                        format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/, message: 'は半角英数字で入力してください' }
