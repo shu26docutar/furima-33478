@@ -1,6 +1,4 @@
-<%
-=begin%>
- <%# cssは商品出品のものを併用しています。
+<%# cssは商品出品のものを併用しています。
 app/assets/stylesheets/items/new.css %>
 
 <div class="items-sell-contents">
@@ -9,7 +7,7 @@ app/assets/stylesheets/items/new.css %>
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item, local: true do |f| %>
+    <%= form_with(model: @item, local: true) do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -101,7 +99,7 @@ app/assets/stylesheets/items/new.css %>
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :item_price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -159,5 +157,3 @@ app/assets/stylesheets/items/new.css %>
     </p>
   </footer>
 </div> 
-<%
-=end%>
