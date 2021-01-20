@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   belongs_to :user
   has_one_attached :image
   has_one :order
@@ -23,7 +24,6 @@ class Item < ApplicationRecord
     validates :category_id
     validates :status_id
     validates :shipping_fee_id
-    validates :prefecture_id
     validates :shipping_day_id
   end
 end
