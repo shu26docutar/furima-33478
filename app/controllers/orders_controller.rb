@@ -1,8 +1,10 @@
 require 'payjp'
+
 class OrdersController < ApplicationController
+    
     before_action :authenticate_user!, only: :index
     before_action :set_params, only: [:index, :create]
-    before_action :return_top, only: :index
+    before_action :return_top, only: [:index, :create]
 
     def index 
         @order_form = OrderForm.new
@@ -10,18 +12,19 @@ class OrdersController < ApplicationController
 
     def create 
         @order_form = OrderForm.new(order_params)
-            if @order_form.valid?
-                pay_item
-                @order_form.save
-                redirect_to root_path
-            else
-                render :index
-            end
+        if @order_form.valid?
+            pay_item
+            @order_form.save
+            redirect_to root_path
+        else
+            render :index
+        end
     end
 
     private
+
     def order_params
-        params.require(:order_form).permit(:number, :exp_month, :exp_year, :cvc, :post_num, :prefecture_id, :city, :street_num, :building_num, :tell_num, :order_id).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
+        params.require(:order_form).permit(:post_num, :prefecture_id, :city, :street_num, :building_num, :tell_num).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
     end
 
     def pay_item
@@ -38,10 +41,8 @@ class OrdersController < ApplicationController
     end
 
     def return_top
-        if @item.user_id == current_user.id
+        if @item.order.present? || (@item.user_id == current_user.id)
             redirect_to root_path
         end
     end
-    
-    
 end

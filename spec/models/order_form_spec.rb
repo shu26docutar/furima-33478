@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderForm, type: :model do
   describe "クレジットカード情報の保存" do
     before do
-      @order_form = FactoryBot.build(:order_form)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
+      sleep 0.1
     end
 
     context "クレジットカードが保存できる場合" do
@@ -36,7 +39,6 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include "Post num is invalid. Include hyphen(-)"
       end
       
-  
       it 'prefecture_idを選択していないと保存できないこと' do
         @order_form.prefecture_id = 0
         @order_form.valid?
@@ -48,19 +50,7 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include "Prefecture can't be blank"
       end
-  
-      it 'user_idが空では保存できないこと' do
-        @order_form.user_id = nil
-        @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "User can't be blank"
-      end
-  
-      it 'item_idが空では保存できないこと' do
-        @order_form.item_id = nil
-        @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Item can't be blank"
-      end
-  
+    
       it 'cityは空では保存できないこと' do
         @order_form.city = nil
         @order_form.valid?
@@ -87,6 +77,12 @@ RSpec.describe OrderForm, type: :model do
   
       it "tell_numは英数混合あれば保存できないこと" do
         @order_form.tell_num = "090123abc"
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include "Tell num is invalid. Don`t include hyphen(-)"
+      end
+
+      it "itell_numは12行以上では保存できないこと" do
+        @order_form.tell_num = "090123412345"
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include "Tell num is invalid. Don`t include hyphen(-)"
       end
