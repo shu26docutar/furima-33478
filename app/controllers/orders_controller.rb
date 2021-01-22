@@ -1,4 +1,48 @@
+require 'payjp'
 class OrdersController < ApplicationController
-    def index
+    before_action :authenticate_user!, only: :index
+    before_action :set_params, only: [:index, :create]
+    before_action :return_top, only: :index
+
+    def index 
+        @order_form = OrderForm.new
     end
+
+    def create 
+        # binding.pry
+        @order_form = OrderForm.new(order_params)
+            if @order_form.valid?
+                pay_item
+                @order_form.save
+                redirect_to root_path
+            else
+                render :index
+            end
+    end
+
+    private
+    def order_params
+        params.require(:order_form).permit(:number, :exp_month, :exp_year, :cvc, :post_num, :prefecture_id, :city, :street_num, :building_num, :tell_num, :order_id).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
+    end
+
+    def pay_item
+        Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+        Payjp::Charge.create(
+          amount: @item.item_price,
+          card: params[:token],
+          currency: 'jpy'
+        )
+    end
+
+    def set_params
+        @item = Item.find(params[:item_id])
+    end
+
+    def return_top
+        if @item.user_id == current_user.id
+            redirect_to root_path
+        end
+    end
+    
+    
 end
