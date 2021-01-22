@@ -1,4 +1,4 @@
-<%= form_with(model: @order_form, url: item_orders_path, method: :post, id: 'charge-form', class: 'card-form',local: true) do |f| %>
+<%= form_with(model: @order_form, url: item_orders_path, id: 'charge-form', class: 'card-form',local: true) do |f| %>
 
 <%= render 'shared/error_messages', model: @order_form %>
 <%= render "shared/second-header"%>
@@ -8,16 +8,15 @@
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
-    <% @items.each do |item| %>
     <div class='buy-item-info'>
-      <%= image_tag item.image, class: 'buy-item-img' %>
+      <%= image_tag @item.image, class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= item.title %>
+          <%= @item.title %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= item.item_price %></p>
-          <p class='item-price-sub-text'><%= item.shipping_fee.name %></p>
+          <p class='item-price-text'>¥<%= @item.item_price %></p>
+          <p class='item-price-sub-text'><%= @item.shipping_fee.name %></p>
         </div>
       </div>
     </div>
@@ -27,10 +26,9 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%= item.item_price %>
+        ¥<%= @item.item_price %>
       </p>
     </div>
-    <%end%>
 
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
