@@ -7,12 +7,11 @@ class OrderForm
     with_options presence: true do
         validates :city
         validates :street_num
-        validates :tell_num, format: { with: /\A\d{10,11}\z/, message: "is invalid. Need include hyphen(-)" }
+        validates :token
+        validates :tell_num, format: { with: /\A\d{10,11}\z/, message: "is invalid. Do`t include hyphen(-)" }
         validates :post_num, format: { with: /\A[0-9]{3}[-][0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
         validates :prefecture_id, numericality: { other_than: 0 }
     end
-
-    validates :token, presence: true
 
     def save
         order = Order.create(user_id: user_id, item_id: item_id)
