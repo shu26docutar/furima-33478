@@ -8,7 +8,7 @@ class OrderForm
         validates :city
         validates :street_num
         validates :token
-        validates :tell_num, format: { with: /\A\d{10,11}\z/, message: "is invalid. Do`t include hyphen(-)" }
+        validates :tell_num, format: { with: /\A\d{10,11}\z/, message: "is invalid. Don`t include hyphen(-)" }
         validates :post_num, format: { with: /\A[0-9]{3}[-][0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
         validates :prefecture_id, numericality: { other_than: 0 }
     end
