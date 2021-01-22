@@ -7,5 +7,7 @@ FactoryBot.define do
     street_num { 1-1 }
     building_num { 1-1 }
     tell_num {'09012341234'}
+    item_id {1}
+    user_id {1}
   end
 end
