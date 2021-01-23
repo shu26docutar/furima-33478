@@ -14,7 +14,7 @@
 
 # Association
 has_many: items
-has_many: purchases
+has_many: order
 
 
 ###　商品情報(item)
@@ -33,10 +33,14 @@ has_many: purchases
 
 # Association
 belongs_to: user
-has_one: purchase
+has_one: order
+has_one_attached: image
+
+# ActiceHash::Association
+belongs_to :prefecture, :category, :status, :shipping_fee, :shipping_day
 
 
-###　購入記録(purchase)
+###　購入記録(order)
 | Column |   Type    |            Options           |
 | ------ | --------- | ---------------------------- |
 | user   | reference | null:false,foreign_key: true |
@@ -57,8 +61,8 @@ has_one: address
 | street_num      | string    | null: false       |
 | building_num    | string    |                   |
 | tell_num        | string    | null: false       |
-| purchase        | reference | foreign_key: true |
+| order           | reference | foreign_key: true |
 
 # Association
-belongs_to: purchase
+belongs_to: order
 

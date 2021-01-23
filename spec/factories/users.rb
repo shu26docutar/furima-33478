@@ -6,7 +6,7 @@ FactoryBot.define do
     password_confirmation { password }
     first_name            { '服部' }
     last_name             { '楓平' }
-    first_name_kana { 'ハットリ' }
+    first_name_kana       { 'ハットリ' }
     last_name_kana        { 'シュウヘイ' }
     birthday              { '2021/01/08' }
   end
