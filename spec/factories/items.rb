@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :item do
+
     title           { Faker::Lorem.sentence }
     description     { Faker::Lorem.sentence }
     item_price      { 301 }
