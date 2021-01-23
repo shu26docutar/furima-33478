@@ -24,7 +24,19 @@ RSpec.describe OrderForm, type: :model do
       it 'tokenが空だと保存ができない' do
         @order_form.token = nil
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Token can't be blank"  
+        expect(@order_form.errors.full_messages).to include "Token can't be blank"
+      end
+
+      it 'user_idが空だと保存できない' do
+        @order_form.user_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include "User can't be blank"
+      end
+
+      it 'item_idが空だと保存できない' do
+        @order_form.item_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include "Item can't be blank"
       end
   
       it 'post_numが空だと保存できないこと' do
