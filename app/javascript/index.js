@@ -12,4 +12,3 @@ function calculation (){
     });
 }
 window.addEventListener('load', calculation);
-

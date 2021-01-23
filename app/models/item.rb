@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
+
   belongs_to :user
   has_one_attached :image
-  # has_one :purchase
+  has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -23,7 +24,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :status_id
     validates :shipping_fee_id
-    validates :prefecture_id
     validates :shipping_day_id
+    validates :prefecture_id
   end
 end
