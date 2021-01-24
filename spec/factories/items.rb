@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :item do
+
     title           { Faker::Lorem.sentence }
     description     { Faker::Lorem.sentence }
     item_price      { 301 }
@@ -8,7 +9,7 @@ FactoryBot.define do
     shipping_day_id { 1 }
     category_id     { 1 }
     status_id       { 1 }
-
+    id              { 1 }
     association :user
 
     after(:build) do |item|
